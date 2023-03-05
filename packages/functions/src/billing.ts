@@ -11,7 +11,7 @@ export const main = handler(async (event: APIGatewayProxyEvent) => {
   const { storage, source } = JSON.parse(event.body);
   const amount = calculateCost(storage);
   const description = "Scratch charge";
-  
+
   if (!process.env.STRIPE_SECRET_KEY) {
     return
   }
@@ -20,7 +20,7 @@ export const main = handler(async (event: APIGatewayProxyEvent) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
     apiVersion: '2022-11-15',
   });
-
+  console.log('test')
   await stripe.charges.create({
     source,
     amount,
